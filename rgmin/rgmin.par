@@ -1,0 +1,12 @@
+       PARAMETER (REVENT=1800) 		! Number of seconds to be an event
+	   PARAMETER (RTHRESHL=0.10) 	! Minimum realizable rain rate
+	   PARAMETER (RTHRESHU=1000.)	! Maximimum realizable rain rate
+	   PARAMETER (NPAR=20)			! ????
+	   PARAMETER (TDIM = 15000)
+	   PARAMETER (THRESH1 = 1200, THRESH2 = 1800)
+
+       INTEGER*4    TIPTIME(TDIM),HALFTIP(TDIM),NINDX(TDIM)
+	   INTEGER*4    BYEAR
+
+
+       COMMON /REVENT/ NEVENT,TIPTIME,HALFTIP,NINDX,BYEAR

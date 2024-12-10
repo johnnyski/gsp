@@ -1,0 +1,9 @@
+{
+file = $9
+#print $0
+if (1*$5 == 0){
+  command ="rm " file
+  print NR,command,$5
+  system (command)
+}
+}

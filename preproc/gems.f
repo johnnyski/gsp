@@ -1,0 +1,70 @@
+C *** THIS PROGRAM READS DATA IN GEMS FORMAT AND WRITES DATA INTO GAG 
+C *** FORMAT FOR STATIONS COLLECTING DATA AT A RESOLUTION OF TIPS/MINUTE
+
+      SUBROUTINE PREPROC_GEMS(NETWORK_ID,FILELIST,BYEAR,VERBOSE)
+
+      INCLUDE 'preproc.par'
+      CHARACTER*4 G_NUMBER
+      CHARACTER*2 CYR
+      CHARACTER*1 MODE
+      INTEGER*4 YR,MON,DAY,HR,MIN
+      INTEGER*4 F2,F3,F4
+      REAL*4    RR,RTOT
+
+
+      READ(BYEAR,2)IBYR
+ 2    FORMAT(I2)
+      YR = IBYR
+ 3    OPEN(UNIT = 1,FILE = FILELIST,STATUS = 'OLD')
+      READ(1,10,END = 999) IFILE
+      IFIRST = 0
+ 10   FORMAT(A60)
+      OPEN(UNIT = 2,FILE = IFILE,STATUS = 'OLD')
+ 5    READ(2,7,END=99)MODE
+ 7    FORMAT(1X,A1)
+      IF(MODE.EQ.'D')THEN
+         BACKSPACE(2)
+         READ(2,*,END=99)MODE,MON,DAY,HR,MIN,RR,RTOT
+         WRITE(3,20) YR,MON,DAY,HR,MIN,RR,RTOT
+C         WRITE(6,20) YR,MON,DAY,HR,MIN,RR,RTOT
+         GOTO 5
+      ELSEIF(MODE.EQ.'L')THEN
+         BACKSPACE(2)
+         READ(2,*)MODE,F2,F3,F4,YR
+         IF(FLAG_YR.EQ.0)THEN
+            IF(YR.NE.IBYR)THEN
+               STOP 'Year does not match! '
+            ENDIF
+            FLAG_YR = 1
+         ELSE
+            IF(YR.NE.IBYR)THEN
+               WRITE(CYR,12)YR
+ 12            FORMAT(I2)
+               CALL NAMEFILE(NETWORK_ID,IFILE,G_NUMBER,CYR,OFILE)
+               WRITE(6,16)OFILE
+            ENDIF
+         ENDIF
+               
+         GOTO 5
+      ELSEIF(MODE.EQ.'S'.AND.IFIRST.EQ.0)THEN
+         BACKSPACE(2)
+         READ(2,15) G_NUMBER
+ 15      FORMAT(4X,A4)
+         CALL NAMEFILE(NETWORK_ID,IFILE,G_NUMBER,BYEAR,OFILE)
+         WRITE(6,16)OFILE
+ 16      FORMAT('Writing to file: ',A60)
+         IFIRST = 1
+         OPEN(UNIT = 3,FILE = OFILE,STATUS = 'UNKNOWN')
+         GOTO 5
+      ELSE
+         GOTO 5
+      ENDIF
+
+      
+ 20   FORMAT(5(I2.2,1X),2(F5.2,1X))
+      GOTO 5
+ 99   CONTINUE
+      GOTO 3
+ 999  CONTINUE
+      RETURN
+      END

@@ -1,0 +1,36 @@
+Instructions for Installing and Packaging GSP
+
+1. Create and maintain a "Master" data directory with sitelists and
+   radar.dat file. All GMIN and GAG files should be removed prior to
+   tarring this directory.
+
+2. Tar the Master data directory (tar data.tar data/).
+
+3. Copy data.tar to gsp directory.
+
+4. Update TODO file
+
+5. Update CHANGES file
+
+6. Update README file
+
+7. Update date of release in GSP. 
+
+8. Update files in docs directories.
+
+9. Commit all changes.
+
+10. Remove all CVS directories in all sub-directories of gsp (optional).
+
+11. cd to a directory directly above gsp and run extract_gsp_docs.
+    This program, which is located in /usr/local/trmm/bin, will copy the
+    appropriate files to a directory called gsp_docs and then tar that file.
+
+12. Copy the gsp_docs.tar file to trmm:/PUBLIC/httpd/htdocs/trmm_office/gsp/
+
+13. Untar docs file in trmm:/PUBLIC/httpd/htdocs/trmm_office/gsp
+   (tar xf gsp_docs.tar)
+
+14. Copy data.tar to gsp directory.
+
+15. Commit gsp

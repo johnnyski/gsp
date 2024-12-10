@@ -1,0 +1,148 @@
+                      PREPROC VERSION RELEASE NOTES
+
+April 2, 1998
+
+Added hook for processing of LBA field campaign data.
+
+April 12, 1998
+
+Fixed bug in calculation of range and azimuth in rgmin
+
+Wednesday, January 21, 1998
+---------------------------------------------
+1) DBW modified preproc.pl to work with TAM data
+2) DBW modified tam.f so that it now works correctly
+3) DBW added get_site.f (removing it from preproc.f)
+4) DBW modified Makefile so that default TOPDIR is ${TRMM},
+   ${TRMM} must be specified in the user's path.
+5) Version tested on SGI. Noted some warnings, should be checked
+
+Wednesday, November 26, 1997
+----------------------------------------------
+1) BLF modified RGMIN so that it no longer exits program after finding
+   an unknown file. 
+2) DBW Cleaned up the preproc.pl program so that it doesn't write too much.
+3) Test changes on SGI and HP. All OK.
+
+Monday, October 27, 1997: BLF
+----------------------------------------------
+1) Added c function daylight_savings_time to preproc.  This function 
+   returns a flag as whether DST is in effect or not (TRUE = 1, FALSE = 0).
+   This flag affects the determination of the offset between local time 
+   and UTC.
+2) Updated Makefile
+
+Tuesday, October 21, 1997: DBW
+----------------------------------------------
+1) Found a bad bug in preproc.pl which was causing to erroneously
+   modify all files as if they were HAR files. Fixed.
+2) Finally got time function working. Found a bug in the old time
+   function that only reared its ugly head on the SGI, causing 
+   erroneous values for julday. Now, julday and get_date have
+   been streamlined and fixed.
+
+Thursday, October 9, 1997: DBW
+----------------------------------------------
+1) Modified time.f in the preproc directory. This now contains more
+   streamlined and more efficient routines for calculating julian day,
+   from month, day and year, and returning the month and day given the
+   Julian day and year. 
+   
+2) Cleaned up the ANY2UTC code, but have not changed its main functionality
+   yet. Some sites, (it appears only Harris County) record their data in 
+   local time, sometimes LST and sometimes DST. It seems that the best way
+   to handle this is to have the subroutine any2utc handle it via a passed
+   flag that says "Hey, this site uses DST, account for it when you change
+   the times"
+
+Friday, October 1, 1997: DBW
+----------------------------------------------
+1) Modified preproc.pl so that it correctly creates temp files and then
+   writes them over the original data.
+
+2) Added comments to the code.
+
+3) Harris County data now works. To get working on SGI I had to 
+   make sure that all rain rates are floating point values. Sometimes
+   they were integers.
+
+4) Modified/improved the INSTALL script.
+
+Sunday, September 28, 1997: DBW
+----------------------------------------------
+1) Raw data sometimes has integer valued rain rates. The subroutine
+   har.f will bomb upon encountering a non-real value. A modification
+   was made to preproc.pl to make sure that all records are the 
+   appropriate format.
+
+2) gsp/preproc/Preproc.txt now includes info on the above fix.
+
+3) The file gsp/preproc/file.list was removed from the repository.
+
+4) A bug in preproc.pl when opening the MODFILE was fixed. This
+   bug caused a pipe symbol "|" to be added to the temporary filenames.
+
+5) The temporary files are now kept in pwd, rather than in the
+   data/raw/NNN/ directory. 
+
+6) This file "CHANGES" was changed to list from the most current
+   to the least current update.
+
+7) Wrote script "create_gmin_from_raw.pl" which is Perl program to
+   run both preproc and rgmin. The interface to the preproc.pl
+   program. 
+   NOTE: You must have create_gmin_from_raw.pl, preproc.pl, preproc,
+         rgmin.pl and rgmin executables in your path to run this
+         program successfully.
+
+8) Wrote csh script "INSTALL_SCRIPT" that does a make clean, make and
+   make install on preproc and rgmin. The script assumes that the
+   Makefile for each program are correct for installation directory,
+   cpu type, etc. 
+
+September 04,1997: BLF - Release Version 1.1
+----------------------------------------------
+1) Completed preproc and rgmin modules for ingesting Harris County data
+
+2) Several bug fixes related to multiple tip QC, processing of St Johns data.
+
+3) Fixed bug in Darwin double tip checking module.
+
+3) Expanded header to include additional fields (GV_Site, product type)
+
+4) streamlined source code
+
+5) cleaned up standard output
+
+6) Added module to treat old KSC and old KWA (KSO & KWO)
+
+7) changed command line arguments on rgmin.  No longer require the year.
+
+June 10, 1997
+----------------------------------------------
+1) Added README file. Began HTML documentation.
+
+2) Added CHANGES file (this file).
+
+3) Added TODO file. Should be used with this file to make sure
+   that all necessary changes are being taken care of.
+
+4) Cleaned up the Makefile. Is much more generic now and has 
+   four, well-identified configuration sections.
+
+5) Package
+
+6) CVS set for TRMM GSP version 1.0
+
+June 1, 1997: BLF & DBW: Release Version 1.0
+----------------------------------------------
+1) Grouped subroutines and separated them from the main line.
+
+2) Now use a rgmin.par file, rather than PARAMETER statements
+   repeated in each routine.
+
+3) Added documentation directory with limited html doc.
+
+4) Tested program using 20 years of requested data storage (45 MB).
+
+

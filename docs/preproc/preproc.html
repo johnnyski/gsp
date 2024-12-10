@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<TITLE> TRMM Gauge Data Processing - PREPROC</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="FFFFFF" TEXT="000000">
+<center>  
+<IMG BORDER="0" SRC="../gsp.gif">
+<hr size=5>
+<h1>PREPROC Documentation</h1>
+
+<hr>
+</center>
+<BODY>
+<H2 ALIGN=LEFT>Description</H2>
+<P> PREPROC ingests raw data received from TRMM GV sites and produces 
+intermediate data products used as input to RGMIN (Cubic Spline 
+Interpolation of 1-minute rain rates from tip increments of rainfall).  
+This program was subsequently designed to treat the specific data 
+formats unique to each GV site and produce an ouput format consistent 
+with the resolution of a given site.  It should be noted that the gag 
+file format is not universal for all sites since the data attributes, 
+such as the resolution at which the data is recorded, differ from site 
+to site.  The objective of preproc is to write the data out to a format 
+that is both which is easily ingestible by RGMIN.  Some sites, such 
+as Darwin, also require some rudimentary preprocessing of the raw data.  
+GV sites currently supported by this software are listed below:
+
+<H4>Rain Gauge Network - Network ID</H4>
+<UL>
+	<LI> Darwin (Cscale, Dscale, Mscale)      		    - CSC, DSC, MSC
+	<LI> Melbourne, Florida (KSC, St Johns)   		    - KSC, STJ
+	<LI> Kwajalein (Royal Marshall Is., Kwajalein) 	    - RMI, KWA
+	<LI> Texas (Harris County, Texas A&M Mesonet)	    - HAR, TAM
+	<LI> Thailand (Om Koi)							    - OMK
+	<LI> Old Gems Format (KSC, Kwajalein before 1997)   - KSO, KWO 
+</UL>
+
+<hr>
+
+<H2> Usage</H2>
+	PREPROC is executed through a perl script interface. The perl 
+  	script preproc.pl, looks through the data directory path (given)
+  	on the command line, creates an input directive file preproc.inp
+  	and then executes the application (from preproc.f). There are
+	four command line arguments that are passed to the perl script,
+	described below.
+
+	<p>
+	<b>NOTE: </b>Make sure the year you enter is correct for the
+		data you provide in the RAW directory. This is currently
+		a weak link in the program, and will be fixed in a later
+		release. 
+	<UL>
+	<LI><H4>preproc.pl DIRECTORY SITEID YEAR VERBOSE</H4>
+		DIRECTORY is the directory path above data/ <BR>
+		SITEID: 3 Character site identification (See above)<BR>
+		YEAR: beginning year of data<BR>
+		VERBOSE is the verbose flag (1 = verbose, 0 = nonverbose).<BR>
+	</UL>
+
+<center>
+<hr>
+
+<h4>
+	|| <a href="http://trmm.gsfc.nasa.gov">TRMM Office Home Page</a>
+	| <a href="../index.html">Gauge Procesing Docs</a> 
+	| PREPROC Docs
+	| <a href="../rgmin/rgmin.html">RGMIN Docs</a> ||
+
+</h4>
+</center>
+<hr >
+<CENTER>
+<TABLE BORDER=1 CELLSPACING=2>
+<TR> 
+	<TD>
+	Contacts:
+	</TD>
+	<TD>
+	<B>Brad L. Fisher</B>/
+		<A href="mailto:fisher@trmm.gsfc.nasa.gov">
+		fisher@trmm.gsfc.nasa.gov</a>
+	</TD>
+	<TD>
+	<B>David B. Wolff</B>/
+		<a href="mailto:wolff@trmm.gsfc.nasa.gov">
+		wolff@trmm.gsfc.nasa.gov</a>
+	</TD>
+</TR>
+</TABLE>
+</CENTER>
+</body></html>
+
+

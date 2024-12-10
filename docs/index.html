@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<TITLE> TRMM Gauge Data Processing</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="FFFFFF" TEXT="000000">
+<center>  
+<IMG BORDER="0" SRC="gauge.gif">
+<hr size=5>
+<IMG BORDER="0" SRC="gsp.gif">
+<hr>
+
+</center>
+
+
+<h2>Introduction</h2>
+This page provides links and documentation on the NASA/TRMM Office
+gauge data processing system. The package is used to create one 
+minute rain rate files (GMIN) files from raw GV rain gauge data. 
+The raw data has been processed via the program preproc. The 
+pre-processed data is then converted to one-minute rain rates 
+with the program RGMIN. The input data are read from and written 
+to a pre-defined disk directory structure. 
+<P>
+
+The DIRECTORY (see below) given at the command line is assumed to be the 
+parent directory containing a data sub-directory structure as 
+follows:
+
+<UL>
+	<LI>data/gag/
+		<UL>
+			<LI>CSC/
+			<LI>DSC/
+			<LI>HAR/
+			<LI>KSC/
+			<LI>KWA/
+			<LI>MSC/
+			<LI>OMK/
+			<LI>RMI/
+			<LI>STJ/
+			<LI>TAM/
+		</UL>
+	<LI>data/gmin/
+	<LI>data/raw/
+		<UL>
+			<LI>CSC/
+			<LI>DSC/
+			<LI>HAR/
+			<LI>KSC/
+			<LI>KWA/
+			<LI>MSC/
+			<LI>OMK/
+			<LI>RMI/
+			<LI>STJ/
+			<LI>TAM/
+		</UL>
+	<LI>data/docs
+	<LI>data/sitelist
+		<UL>
+			<LI>CSC_loc.dat/
+			<LI>DSC_loc.dat/
+			<LI>HAR_loc.dat/
+			<LI>KSC_loc.dat/
+			<LI>KWA_loc.dat/
+			<LI>MSC_loc.dat/
+			<LI>OMK_loc.dat/
+			<LI>RMI_loc.dat/
+			<LI>STJ_loc.dat/
+			<LI>TAM_loc.dat/
+			<LI>radar.dat
+		</UL>
+</UL>
+<p>
+
+Notes: <p>
+
+<OL>
+<LI>
+The raw tip records are to be placed in the data/raw/NNN directory,
+where NNN is the network identifier. 
+<P>
+<LI>The sitelists, which contain the gauge number, gauge name, longitude 
+(deg, minutes and seconds) and latitude (degrees, minutes and seconds) are 
+placed in the data/sitelist/NNN_loc.dat files.
+<P>
+<LI>A special file, data/sitelist/radar.dat contains the lat, lon and four
+letter identifier for the principal radar for each network.
+<P>
+<LI>The output of the preproc program will be placed in the data/gag/NNN,
+where NNN is the 3-letter site identifier. Note: preproc.pl will clean 
+the selected GAG directory prior to execution of the application.
+<P>
+<LI> The output of the RGMIN proram will be placd in the data/gmin
+directory. Note that the program preproc.pl will clean this entire directory
+upon every execution, so processed data should be moved accordingly.
+</OL>
+
+<hr>
+<h2> Step 1: <a href="preproc/preproc.html">PREPROC</a>:
+	Reformat and quality control raw data</h2>
+<hr>
+<h2> Step 2: <a href="rgmin/rgmin.html">RGMIN</a>: 
+	Convert to one-minute rain rates</h2>
+
+<hr>
+
+<h3> 
+Look at the general 
+<a href="http://trmm.gsfc.nasa.gov/trmm_office/gauge/gsp/docs/README">
+	README</a> file 
+</h3>
+<h3> 
+<a href="http://trmm.gsfc.nasa.gov/trmm_office/gauge/gsp/docs/CHANGES">
+	CHANGES</a> to GSP 
+</h3>
+<h3> What's next 
+<a href="http://trmm.gsfc.nasa.gov/trmm_office/gauge/gsp/docs/TODO">To Do???
+</h3>
+<center>
+<hr>
+
+<h4>
+	| <a href="http://trmm.gsfc.nasa.gov">TRMM Office Home Page</a>
+	| Gauge Procesing Docs</a> 
+	| <a href="preproc/preproc.html">PREPROC Docs</a> | 
+	| <a href="rgmin/rgmin.html">RGMIN Docs</a> | 
+</h4>
+
+</center>
+
+<hr size=5>
+<CENTER>
+<TABLE BORDER=1 CELLSPACING=2>
+<TR> 
+	<TD>
+	Contacts:
+	</TD>
+	<TD>
+	<B>Brad L. Fisher</B>/
+		<A href="mailto:fisher@trmm.gsfc.nasa.gov">
+		fisher@trmm.gsfc.nasa.gov</a>
+	</TD>
+	<TD>
+	<B>David B. Wolff</B>/
+		<a href="mailto:wolff@trmm.gsfc.nasa.gov">
+		wolff@trmm.gsfc.nasa.gov</a>
+	</TD>
+</TR>
+</TABLE>
+</CENTER>
+</body></html>

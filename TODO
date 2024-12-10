@@ -1,0 +1,29 @@
+Things to do
+
+Last update: Tuesday, October 27, 1997
+
+1) Eliminate year from preproc interface.
+
+2) Expand documentation.  Make links to TRMM web site.
+
+3) Build GUI
+
+4) Increase error checking capabilities
+
+5) Produce log files and allow for verbose functionality in all
+   programs.
+
+6) Document all code (main, subroutine and functions).
+
+7) Begin an application library for testing GMIN data. Apps should
+   include Daily, Hourly and Monthly Totals.
+
+8) Write a package testing script to test changes on all sites
+   prior to release. 
+
+Friday, December 19, 1997
+
+9) Set up a log directory where site specific log files can be directed
+   Logs files should be generated on site by site basis which record
+   processing details which can assist in quality control and flagging
+   missing data.  This should be a top priority.

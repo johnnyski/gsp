@@ -1,0 +1,56 @@
+                        Preproc Documentation
+
+Last update: Sunday, September 28, 1997
+
+
+Description:
+
+PREPROC ingests raw data received from TRMM GV sites and produces a second 
+level of intermediate data products used as input to RGMIN (Cubic Spline 
+Interpolation of 1 - minute rain rates from tip increments of rainfall).  This
+program was subsequently designed to treat the specific data formats unique to 
+each GV site and produce an ouput format consistent with the resolution of a 
+given site.  It should be noted that the gag file format is not universal for 
+all sites since the data attributes, such as the resolution at which the data 
+is recorded, differ from site to site.  The objective of preproc is to write 
+the data out to a format that is both compatible with file attributes and 
+which is easily ingestible by RGMIN.  Some sites, such as Darwin, also
+require some rudimentary preprocessing of the raw data.  GV sites currently 
+supported by this software are listed below:
+
+Rain Gauge Network - Network ID
+===============================
+Darwin (Cscale, Dscale, Mscale)                 - CSC, DSC, MSC
+Melbourne, Florida (KSC, St Johns)              - KSC, STJ
+Kwajalein (Royal Marshall Is., Kwajalein)       - RMI, KWA
+Texas (Harris County, Texas A&M Mesonet)        - HAR, TAM
+Thailand (Om Koi)                               - OMK
+Old Gems Format (KSC, Kwajalein before 1997)    - KSO, KWO 
+
+NOTES:
+
+1) HAR data sometimes has an integer valued rain rate, which will cause
+   har.f to crash. A fix was placed in preproc.pl to rewrite the data in
+   a consistent format.
+
+Usage:
+
+Preproc is executed through a Perl script interface.
+
+Command:
+preproc.pl DIRECTORY SITEID YEAR VERBOSE
+
+arguments:
+    DIRECTORY above the data/ directory
+    SITEID  3 Character site identification (See Above) 
+    YEAR beginning year of data
+    VERBOSE is the verbose flag (1 = verbose, 0 = nonverbose).
+
+(e.g. preproc.pl /data/gauge/ KSC 97 1)
+
+
+
+
+
+
+

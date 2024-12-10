@@ -1,0 +1,81 @@
+This package  is used to create gmin files from raw GV rain gauge data. 
+The raw data has been processed via the program preproc. 
+The pre-processed data is then converted to one-minute rain rates with
+the program RGMIN.
+
+The input data are read from and written to a pre-defined disk directory 
+structure. The DIRECTORY given at the command line is assumed 
+to be the parent directory containing a data sub-directory 
+structure as follows:
+
+	data/gag/
+	data/gmin/
+	data/raw/
+			CSC/
+			DSC/
+			HAR/
+			KSC/
+			KWA/
+			LBA/
+			MSC/
+			OMK/
+			RMI/
+			STJ/
+			TAM/
+			TFB/
+			TFT/
+	data/docs
+	data/sitelist
+			CSC_loc.dat/
+			DSC_loc.dat/
+			HAR_loc.dat/
+			KSC_loc.dat/
+			KWA_loc.dat/
+			LBA_loc.dat
+			MSC_loc.dat/
+			OMK_loc.dat/
+			RMI_loc.dat/
+			STJ_loc.dat/
+			TAM_loc.dat/
+			TFB_loc.dat/
+			TFT_loc.dat/
+			radar.dat
+
+Notes:
+
+1) The raw tip records are to be placed in the data/raw/NNN directory,
+where NNN is the network identifier. 
+
+2) The sitelists, which contain the gauge number, gauge name, longitude 
+(deg, minutes and seconds) and latitude (degrees, minutes and seconds) are 
+placed in the data/sitelist/NNN_loc.dat files.
+
+3) A special file, data/sitelist/radar.dat contains the lat, lon and four
+letter identifier for the principal radar for each network.
+
+4) The output of the preproc program will be placed in the data/gag 
+directory. Note that the program preproc.pl will clean this directory
+upon every execution, so processed data should be moved accordingly.
+
+5) The output of the RGMIN proram will be placd in the data/gmin
+directory. Note that the program preproc.pl will clean this directory
+upon every execution, so processed data should be moved accordingly.
+
+
+Contact:
+
+Brad L. Fisher
+NASA/TRMM Office
+Code 910.1
+Greenbelt, MD 20771
+301-286-8912
+fisher@trmm.gsfc.nasa.gov
+
+David B. Wolff
+NASA/TRMM Office
+Code 910.1
+Greenbelt, MD 20771
+301-286-2120
+wolff@trmm.gsfc.nasa.gov
+
+

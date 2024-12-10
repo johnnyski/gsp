@@ -1,0 +1,31 @@
+#!/bin/csh 
+
+set dir = `pwd`
+echo "Current directory: $dir"
+echo " "
+echo "Compiling and installing preproc..."
+cd $dir/preproc
+make clean
+make
+make install
+
+echo "Compiling and installing rgmin..."
+cd $dir/rgmin
+make clean
+make
+make install
+
+rehash
+echo " "
+echo "******************************************************************"
+echo "Notes on installing GSP"
+echo " "
+echo "    1) This script assumed that the Makefile's in both preproc"
+echo "       and rgmin were correct. As a default, they compile was for"
+echo "       HP systems. You will need to modify the Makefiles for SGI"
+echo "       or Linux systems.  "
+echo " "
+echo "    2) The install options are defaulted at ${HOME}/bin"
+echo " "
+echo "******************************************************************"
+echo " "

@@ -1,0 +1,67 @@
+############################################################
+# CONIGURATAION STEP 1: CHOOSE COMPILER AND PLATFORM       #
+############################################################
+#
+#FC = fort77 # HP 
+FC = f77    # SGI or Linux
+
+FFLAGS = -O -K                   # HP (optimization mode)
+#FFLAGS = -g                     # Linux (debug mode)
+#FFLAGS = -O                     # Linux (optimization mode)
+#FFLAGS = -static -Nl50 -g       # SGI (debug mode)
+#FFLAGS = -O  -static -Nl50      # SGI (optimization mode)
+
+############################################################
+# CONIGURATAION STEP 2: CHOOSE THE LIB, BIN AND INC DIRS   #
+############################################################
+#
+# These are the bin, lib and include directories
+#
+BINDIR = ${HOME}/bin
+
+#BINDIR = /usr/local/trmm/bin
+#LIBDIR = /usr/local/trmm/lib
+#INCDIR = /usr/local/trmm/include
+
+#
+# Link flags
+#
+LDFLAGS = -L. 
+
+############################################################
+# CONIGURATAION STEP 3: IDENTIFY INPUT SOURCE COE          #
+############################################################
+#
+# # Input source code
+#
+o = rgmin.o input.o spline.o time.o qc.o
+
+############################################################
+# CONIGURATAION STEP 4: NAME THE OUTPUT PROGRAM            #
+############################################################
+#
+# # Executable output
+#
+p = rgmin
+
+############################################################
+# NO CONFIGURATION SHOULD BE NECESSARY BELOW THIS LINE     #
+############################################################
+
+all: $(p)
+
+$(p): $o
+	$(FC) -o $@ $o
+
+clean:
+	-rm $o
+	-rm $(p)
+	-rm $(BINDIR)/$(p)
+
+install:
+	-cp $(p) $(BINDIR)
+	-cp $(p).pl $(BINDIR)
+
+
+
+

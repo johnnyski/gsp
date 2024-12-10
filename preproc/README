@@ -1,0 +1,36 @@
+The program preproc_stj ingests a raw input file from St Johns Water Management
+District containing time of tip telemetry rain gauge measurements for the 
+entire network.  The program then performs three basic operations on the file
+listed below:
+
+1) collects data from each gauge and parses into individual gauge files
+
+2) reorders the original data so that output file begins with first recorded
+tip and ends with the last.  The raw data records contrastly begin with the 
+most recent record and ens with the first recorded record.
+
+3) The raw rainfall measurements represent accumulation totals from some
+arbitrary point in time.  The time of tip information is backed out by 
+subtracting the current record from the previous record.  Only nonzero
+amounts are written out to output (telemetry system interogates individual
+gauges every 6 hours.  If no rainfall is detected a record is written
+out with the same accumulation as the previous record.  These records are
+filtered by procedure in 3)
+
+Important caveats on running program - Files are named according to the
+input file.  Strict file naming conventions must be adhered to.  The original
+data is downloaded to a PC which limits the number of allowable characters
+in a filename.  Files are named according to the date on which the data is
+downloaded.  The total number of characters in a file name should be exactly
+9.  An example of this convention is as follows:  stj01149.7.  Although 
+additional characters attached to extension are in principle allowable, they
+serve no additional purpose in uniquely distinquishing raw data files. It
+is therefore not recommended that such characters be used.
+
+Gremlins (bogus PC characters) occasionally occur at the end of a raw data 
+file.  This program will ungracefully terminate if such characters are detected.
+It is recommended that users examine the end of file before execution of program.
+Otherwise, if program terminates, last line should be checked and deleted if
+necessary.  Output files should be deleted as well and the program then rerun.
+It is not absolutely necessary to delete the output, but since program only
+requires 5 seconds to run, it is recommended.

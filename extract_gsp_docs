@@ -1,0 +1,31 @@
+#!/bin/csh
+
+echo "Removing old gsp_docs directory... "
+rm -r gsp_docs 
+
+echo "Copying gsp/docs directory to gsp_docs... "
+cp -r gsp/docs gsp_docs
+
+echo "Copying README..."
+cp gsp/README gsp_docs/README
+
+echo "Copying CHANGES..."
+cp gsp/README gsp_docs/CHANGES
+
+echo "Copying TODO..."
+cp gsp/README gsp_docs/TODO
+
+echo "Removing CVS directories... "
+rm -r gsp_docs/CVS
+rm -r gsp_docs/preproc/CVS
+rm -r gsp_docs/rgmin/CVS
+
+
+echo "Tarring gsp_docs directory... "
+tar cf gsp_docs.tar gsp_docs
+
+echo "**************************************************************"
+echo ""
+
+echo "Now copy gsp_docs.tar to trmm:/PUBLIC/httpd/htdocs/trmm_office/gauge/gsp/ "
+echo ""
